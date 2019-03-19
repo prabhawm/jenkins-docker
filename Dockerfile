@@ -1,12 +1,12 @@
 FROM jenkins/jenkins
-USER ubuntu
+USER root
 
-RUN sudo mkdir -p /tmp/download && \
- sudo curl -L https://download.docker.com/linux/static/stable/x86_64/docker-18.03.1-ce.tgz | tar -xz -C /tmp/download && \
- sudo rm -rf /tmp/download/docker/dockerd && \
- sudo mv /tmp/download/docker/docker* /usr/local/bin/ && \
- sudo rm -rf /tmp/download && \
- sudo groupadd -g 999 docker && \
- sudo usermod -aG staff,docker jenkins
+RUN  mkdir -p /tmp/download && \
+  curl -L https://download.docker.com/linux/static/stable/x86_64/docker-18.03.1-ce.tgz | tar -xz -C /tmp/download && \
+  rm -rf /tmp/download/docker/dockerd && \
+  mv /tmp/download/docker/docker* /usr/local/bin/ && \
+  rm -rf /tmp/download && \
+  groupadd -g 999 docker && \
+  usermod -aG staff,docker jenkins
 
 user jenkins
